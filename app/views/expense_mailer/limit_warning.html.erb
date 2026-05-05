@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Alerta de limite mensal</h1>
+    <p>Olá <%= @user.email %>,</p>
+    <p>Já usaste <strong><%= @pct_used %>%</strong> do limite mensal da categoria <strong><%= @category.name %></strong>.</p>
+    <p>Limite: <%= @category.monthly_limit %>€ | Restante: <%= @remaining %>€</p>
+    <p>Tem cuidado com as despesas restantes este mês!</p>
+  </body>
+</html>

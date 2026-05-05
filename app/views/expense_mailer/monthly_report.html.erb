@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Relatório de <%= @month.strftime('%B %Y') %></h1>
+    <p>Olá <%= @user.email %>,</p>
+    <p>Total gasto em <%= @month.strftime('%B') %>: <strong><%= @total %>€</strong></p>
+    <h2>Por categoria:</h2>
+    <% @by_category.each do |category, expenses| %>
+      <h3><%= category&.name %></h3>
+      <ul>
+        <% expenses.each do |expense| %>
+          <li><%= expense.description %> — <%= expense.amount %>€ (<%= expense.date %>)</li>
+        <% end %>
+      </ul>
+    <% end %>
+  </body>
+</html>
