@@ -2,10 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV.fetch("DATABASE_URL") %>
 
 development:
   <<: *default
+  url: <%= ENV.fetch("DATABASE_URL", "postgres://postgres:postgres@localhost/expense_tracker_development") %>
 
 test:
   <<: *default
@@ -13,3 +13,4 @@ test:
 
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
