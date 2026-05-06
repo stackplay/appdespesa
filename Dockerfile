@@ -22,4 +22,4 @@ USER rails
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "echo 'Starting migrations...' && bundle exec rails db:migrate 2>&1 && echo 'Starting server...' && bundle exec rails server -b 0.0.0.0 -p 3000 2>&1"]
+CMD ["sh", "-c", "bundle exec rails db:migrate 2>&1 && echo 'MIGRATIONS DONE' && bundle exec rails runner 'puts Rails.application.routes.routes.count' 2>&1 && echo 'ROUTES OK' && bundle exec rails server -b 0.0.0.0 -p 3000 2>&1"]
