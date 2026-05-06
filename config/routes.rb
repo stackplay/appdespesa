@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
+  get "/up", to: proc { [200, {}, ["ok"]] }
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   namespace :api do
     namespace :v1 do
-      get "incomes/index"
-      get "incomes/create"
-      get "incomes/update"
-      get "incomes/destroy"
       post "auth/register"
       post "auth/login"
       post "auth/refresh"
       post "auth/logout"
-      
-      resources :incomes, only: [:index, :create, :update, :destroy]
+
       resource :profile, only: [:show, :update] do
         patch :password, on: :member
         delete :deactivate, on: :member
@@ -19,11 +16,12 @@ Rails.application.routes.draw do
 
       resources :categories, only: [:index, :create, :update, :destroy]
       resources :expenses, only: [:index, :create, :destroy] do
-  collection do
-    get :export
-  end
-end
+        collection do
+          get :export
+        end
+      end
       resources :tags, only: [:index]
+      resources :incomes, only: [:index, :create, :update, :destroy]
 
       namespace :stats do
         get :overview
@@ -32,9 +30,9 @@ end
       end
 
       namespace :admin do
-  resources :expenses, only: [:index]
-  resources :audit_logs, only: [:index]
-end
+        resources :expenses, only: [:index]
+        resources :audit_logs, only: [:index]
+      end
     end
   end
 end
