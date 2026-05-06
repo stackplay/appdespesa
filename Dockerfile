@@ -22,4 +22,4 @@ USER rails
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "bundle exec rails db:migrate 2>&1 && echo 'MIGRATIONS DONE' && bundle exec rails runner 'puts Rails.application.routes.routes.count' 2>&1 && echo 'ROUTES OK' && bundle exec rails server -b 0.0.0.0 -p 3000 2>&1"]
+CMD ["sh", "-c", "echo 'Step 1: migrate' && bundle exec rails db:migrate && echo 'Step 2: migrate done' && echo 'Step 3: start server' && exec bundle exec puma -C config/puma.rb -b tcp://0.0.0.0:3000"]
