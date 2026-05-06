@@ -22,4 +22,4 @@ USER rails
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "echo 'Step 1: migrate' && bundle exec rails db:migrate && echo 'Step 2: migrate done' && echo 'Step 3: start server' && exec bundle exec puma -C config/puma.rb -b tcp://0.0.0.0:3000"]
+CMD ["sh", "-c", "echo CONTAINER_STARTED && ruby -e 'puts RUBY_VERSION' && echo RUBY_OK && bundle exec ruby -e 'require \"rails\"; puts Rails::VERSION::STRING' && echo RAILS_OK && bundle exec rails db:migrate && echo MIGRATE_OK && bundle exec puma -C config/puma.rb -b tcp://0.0.0.0:3000"]
