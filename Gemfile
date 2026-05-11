@@ -11,6 +11,7 @@ gem "rack-attack"
 gem "blueprinter"
 gem "pagy", "~> 9.0"
 gem "sidekiq"
+gem "rack-cors"
 
 group :development, :test do
   gem "dotenv-rails"
