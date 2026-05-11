@@ -9,7 +9,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "rack-attack"
 gem "blueprinter"
-gem "pagy", "~> 9.0"
+gem "pagy", "~> 43.4"
 gem "sidekiq"
 gem "rack-cors"
 
